@@ -1,0 +1,105 @@
+/* Content script specific styles */
+
+/* This ensures our UI doesn't interfere with the page's styles */
+#archimind-extension-container {
+    all: initial;
+    font-family: 'Roboto', Arial, sans-serif;
+    z-index: 9999;
+    position: relative;
+  }
+  
+  /* Ensures tailwind styles don't affect the page */
+  #archimind-extension-container * {
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+  
+  /* Keyframes for animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Animation classes */
+  .archimind-fade-in {
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  .archimind-pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  .archimind-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Toast container for notifications */
+  #archimind-toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Make sure these don't conflict with page styles */
+  .archimind-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+  }
+  
+  /* Prompt enhancement styles */
+  .archimind-enhancer-button {
+    position: absolute;
+    right: 50px;
+    background-color: #1C4DEB;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    z-index: 1000;
+  }
+  
+  .archimind-enhancer-button:hover {
+    background-color: #0e3bc5;
+    transform: translateY(-1px);
+  }
+  
+  .archimind-enhancer-panel {
+    position: absolute;
+    width: 90%;
+    max-width: 600px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(28, 77, 235, 0.2);
+  }
