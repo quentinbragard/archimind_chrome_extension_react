@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import ContentApp from './components/ContentApp';
 import { ToastProvider } from '@/components/common/ToastProvider';
 import '@/styles/globals.css';
-// import './content.css';
+import './content.css';
 
 // Initialize the content script
 function initialize() {
@@ -56,5 +56,6 @@ function setupLifecycleHandlers() {
 }
 
 // Run the initializer
+console.log('====================🚀 Archimind Extension content script initializing...');
 initialize();
 setupLifecycleHandlers();

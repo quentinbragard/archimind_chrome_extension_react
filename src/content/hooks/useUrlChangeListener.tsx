@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Custom hook to listen for URL changes and extract chat ID

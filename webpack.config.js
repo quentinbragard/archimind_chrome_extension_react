@@ -133,6 +133,8 @@ module.exports = (env, argv) => {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
       alias: {
         '@': path.resolve(__dirname, 'src/'),
+        'react': path.resolve('./node_modules/react'),
+        'react-dom': path.resolve('./node_modules/react-dom')
       },
     },
     plugins: [
