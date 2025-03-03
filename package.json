@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite build --mode development --watch",
     "build": "vite build",
+    "build:content": "vite build --config vite.content.config.js",
     "build:dev": "vite build --mode development",
     "build:staging": "vite build --mode staging",
     "build:verbose": "vite build --mode production --debug",

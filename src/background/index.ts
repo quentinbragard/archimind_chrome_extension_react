@@ -2,7 +2,7 @@
 
 // Handle installation
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.tabs.create({ url: 'welcome.html' });
+    chrome.tabs.create({ url: 'src/welcome/welcome.html' });
   });
   
   // Listen for messages from content script or popup
