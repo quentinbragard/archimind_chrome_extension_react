@@ -1,0 +1,43 @@
+// Create these files to resolve the missing options directory issue
+
+// src/options/options.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Archimind Options</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+
+// src/options/index.tsx
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import '@/styles/globals.css';
+
+const OptionsPage: React.FC = () => {
+  return (
+    <div className="p-6 max-w-4xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">Archimind Extension Options</h1>
+      <p className="mb-4">Configure your Archimind extension settings here.</p>
+      
+      <div className="bg-white rounded-lg shadow p-4 mb-4">
+        <h2 className="text-lg font-semibold mb-2">Coming Soon</h2>
+        <p>Options settings will be available in a future update.</p>
+      </div>
+    </div>
+  );
+};
+
+const root = document.getElementById('root');
+if (root) {
+  createRoot(root).render(
+    <React.StrictMode>
+      <OptionsPage />
+    </React.StrictMode>
+  );
+}

@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = ({
     secondary: 'bg-secondary text-white hover:opacity-90',
     danger: 'bg-red-500 text-white hover:bg-red-600',
     outline: 'bg-transparent border border-primary text-primary hover:bg-primary hover:text-white',
-    ghost: 'bg-transparent text-text hover:bg-gray-100',
+    ghost: 'bg-transparent text-gray-800 hover:bg-gray-100',
   };
   
   // Disabled classes

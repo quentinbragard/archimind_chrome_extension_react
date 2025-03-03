@@ -3,20 +3,78 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const fs = require('fs');
+
+// Check if directories and files exist
+const hasOptionsDir = fs.existsSync(path.resolve(__dirname, 'src/options'));
+const hasPublicDir = fs.existsSync(path.resolve(__dirname, 'public'));
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   
+  // Define entry points (exclude options if it doesn't exist)
+  const entry = {
+    popup: './src/popup/index.tsx',
+    content: './src/content/index.tsx',
+    background: './src/background/index.ts',
+    welcome: './src/welcome/index.tsx',
+  };
+  
+  // Only add options entry if the directory exists
+  if (hasOptionsDir) {
+    entry.options = './src/options/index.tsx';
+  }
+  
+  // Define HTML plugins
+  const htmlPlugins = [
+    new HtmlWebpackPlugin({
+      template: './src/popup/popup.html',
+      filename: 'popup.html',
+      chunks: ['popup'],
+      scriptLoading: 'defer',
+      inject: 'body',
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/welcome/welcome.html',
+      filename: 'welcome.html',
+      chunks: ['welcome'],
+      scriptLoading: 'defer',
+      inject: 'body',
+    })
+  ];
+  
+  // Add options HTML plugin if directory exists
+  if (hasOptionsDir) {
+    htmlPlugins.push(
+      new HtmlWebpackPlugin({
+        template: './src/options/options.html',
+        filename: 'options.html',
+        chunks: ['options'],
+        scriptLoading: 'defer',
+        inject: 'body',
+      })
+    );
+  }
+  
+  // Define copy patterns
+  const copyPatterns = [
+    { from: './src/manifest.json', to: '.' }
+  ];
+  
+  // Add public directory copy if it exists
+  if (hasPublicDir) {
+    copyPatterns.unshift({ from: './public', to: '.' });
+  }
+  
+  // Check if src/assets exists and add it to copy patterns if it does
+  if (fs.existsSync(path.resolve(__dirname, 'src/assets'))) {
+    copyPatterns.push({ from: './src/assets', to: 'assets' });
+  }
+  
   return {
     mode: isProduction ? 'production' : 'development',
     devtool: isProduction ? false : 'inline-source-map',
-    entry: {
-      popup: './src/popup/index.tsx',
-      options: './src/options/index.tsx',
-      content: './src/content/index.tsx',
-      background: './src/background/index.ts',
-      welcome: './src/welcome/index.tsx',
-    },
+    entry: entry,
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
@@ -70,29 +128,11 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: '[name].css',
       }),
-      // Generate HTML files
-      new HtmlWebpackPlugin({
-        template: './src/popup/popup.html',
-        filename: 'popup.html',
-        chunks: ['popup'],
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/options/options.html',
-        filename: 'options.html',
-        chunks: ['options'],
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/welcome/welcome.html',
-        filename: 'welcome.html',
-        chunks: ['welcome'],
-      }),
+      // Add HTML plugins
+      ...htmlPlugins,
       // Copy static files
       new CopyWebpackPlugin({
-        patterns: [
-          { from: './public', to: '.' },
-          { from: './src/manifest.json', to: '.' },
-          { from: './src/assets', to: 'assets', noErrorOnMissing: true },
-        ],
+        patterns: copyPatterns,
       }),
     ],
     optimization: {
