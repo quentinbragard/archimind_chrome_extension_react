@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Archimind Chrome Extension",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Intercepts ChatGPT messages and saves them to your backend service.",
   "permissions": [
     "storage",
