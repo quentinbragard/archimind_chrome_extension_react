@@ -56,7 +56,7 @@ const Popup: React.FC = () => {
             variant="ghost" 
             size="sm" 
             onClick={signOut}
-            className="text-white hover:bg-white hover:bg-opacity-20"
+            className="text-white hover:bg-white/20"
           >
             Sign Out
           </Button>
@@ -103,19 +103,19 @@ const Popup: React.FC = () => {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-primary bg-opacity-5 p-3 rounded-lg text-center">
+                <div className="bg-primary/5 p-3 rounded-lg text-center">
                   <div className="text-2xl font-semibold text-primary">
                     {stats?.total_prompts || 0}
                   </div>
                   <div className="text-sm text-gray-600">Total Prompts</div>
                 </div>
-                <div className="bg-primary bg-opacity-5 p-3 rounded-lg text-center">
+                <div className="bg-primary/5 p-3 rounded-lg text-center">
                   <div className="text-2xl font-semibold text-primary">
                     {stats?.average_score?.toFixed(1) || '-'}<span className="text-sm font-normal">/20</span>
                   </div>
                   <div className="text-sm text-gray-600">Avg. Score</div>
                 </div>
-                <div className="col-span-2 bg-primary bg-opacity-5 p-3 rounded-lg text-center">
+                <div className="col-span-2 bg-primary/5 p-3 rounded-lg text-center">
                   <div className="text-2xl font-semibold text-primary">
                     {stats?.energy_usage?.toFixed(2) || '-'}<span className="text-sm font-normal"> kWh</span>
                   </div>

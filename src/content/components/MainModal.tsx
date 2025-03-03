@@ -98,14 +98,14 @@ const MainModal: React.FC<MainModalProps> = ({
     >
       {/* Stat summary */}
       <div className="grid grid-cols-3 gap-4 mb-4">
-        <div className="bg-primary bg-opacity-5 p-3 rounded-md text-center">
+        <div className="bg-primary/5 p-3 rounded-md text-center">
           <span className="block text-2xl font-semibold text-primary">
             {statsLoading ? '-' : stats?.total_prompts || 0}
           </span>
           <span className="text-xs text-gray-600">Prompts</span>
         </div>
         
-        <div className="bg-primary bg-opacity-5 p-3 rounded-md text-center">
+        <div className="bg-primary/5 p-3 rounded-md text-center">
           <span className="block text-2xl font-semibold text-primary">
             {statsLoading ? '-' : stats?.average_score?.toFixed(1) || '-'}
             <span className="text-xs font-normal">/20</span>
@@ -113,7 +113,7 @@ const MainModal: React.FC<MainModalProps> = ({
           <span className="text-xs text-gray-600">Score</span>
         </div>
         
-        <div className="bg-primary bg-opacity-5 p-3 rounded-md text-center">
+        <div className="bg-primary/5 p-3 rounded-md text-center">
           <span className="block text-2xl font-semibold text-primary">
             {statsLoading ? '-' : stats?.energy_usage?.toFixed(2) || '-'}
             <span className="text-xs font-normal">kWh</span>

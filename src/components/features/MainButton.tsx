@@ -22,7 +22,7 @@ const MainButton: React.FC<MainButtonProps> = ({
       }}
     >
       {pulse && (
-        <span className="absolute inset-0 w-full h-full rounded-full bg-primary bg-opacity-10 animate-pulse-custom"></span>
+        <span className="absolute inset-0 w-full h-full rounded-full bg-primary/10 animate-pulse-custom"></span>
       )}
       
       {notification && (

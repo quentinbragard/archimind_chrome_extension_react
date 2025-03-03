@@ -63,8 +63,14 @@ module.exports = (env, argv) => {
   
   // Add public directory copy if it exists
   if (hasPublicDir) {
-    copyPatterns.unshift({ from: './public', to: '.' });
+    copyPatterns.push({ from: './public', to: '.' });
   }
+  
+  // Copy content.css directly
+  copyPatterns.push({ 
+    from: './src/content/content.css', 
+    to: './content.css' 
+  });
   
   // Check if src/assets exists and add it to copy patterns if it does
   if (fs.existsSync(path.resolve(__dirname, 'src/assets'))) {
@@ -96,13 +102,21 @@ module.exports = (env, argv) => {
             },
           },
         },
-        // CSS handling
+        // CSS handling for global styles
         {
           test: /\.css$/,
+          exclude: /content\.css$/,
           use: [
-            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'postcss-loader',
+          ],
+        },
+        // Special handling for content.css
+        {
+          test: /content\.css$/,
+          use: [
+            'css-loader'
           ],
         },
         // Asset handling
@@ -123,7 +137,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new CleanWebpackPlugin({
-        cleanStaleWebpackAssets: true,
+        cleanStaleWebpackAssets: false, // Keep copied assets
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',

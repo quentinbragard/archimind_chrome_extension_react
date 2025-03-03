@@ -54,7 +54,7 @@ const Modal: React.FC<ModalProps> = ({
   
   // Portal content to body
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 animate-fade-in">
       <div 
         ref={modalRef}
         className={`bg-white rounded-lg shadow-xl overflow-hidden max-w-md w-full max-h-[90vh] flex flex-col ${className}`}
@@ -64,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
             <h3 className="text-lg font-medium">{title}</h3>
             <button
               onClick={onClose}
-              className="text-white hover:bg-white hover:bg-opacity-20 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none"
+              className="text-white hover:bg-white/20 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none"
               aria-label="Close"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -183,7 +183,7 @@ const PromptEnhancer: React.FC = () => {
             <h3 className="text-lg font-medium">Enhanced Prompt</h3>
             <div className="flex gap-2">
               <button
-                className="bg-white bg-opacity-20 p-1 rounded hover:bg-opacity-30 transition-colors"
+                className="bg-white/20 p-1 rounded hover:bg-opacity-30 transition-colors"
                 onClick={useEnhancedPrompt}
                 disabled={isLoading || !enhancedPrompt}
                 title="Use This Prompt"
@@ -194,7 +194,7 @@ const PromptEnhancer: React.FC = () => {
                 </svg>
               </button>
               <button
-                className="bg-white bg-opacity-20 p-1 rounded hover:bg-opacity-30 transition-colors"
+                className="bg-white/20 p-1 rounded hover:bg-opacity-30 transition-colors"
                 onClick={() => setShowPanel(false)}
                 title="Close"
               >

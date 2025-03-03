@@ -9,9 +9,26 @@ const path = require('path');
 
 // Define replacements
 const classReplacements = {
+  // Text color replacements
   'text-text': 'text-gray-800',
   'text-text-default': 'text-gray-800',
-  'text-text-secondary': 'text-gray-600'
+  'text-text-secondary': 'text-gray-600',
+  
+  // Background opacity pattern replacements
+  'bg-primary bg-opacity-5': 'bg-primary/5',
+  'bg-primary bg-opacity-10': 'bg-primary/10',
+  'bg-primary bg-opacity-20': 'bg-primary/20',
+  'bg-white bg-opacity-20': 'bg-white/20',
+  'bg-white bg-opacity-30': 'bg-white/30',
+  'bg-black bg-opacity-50': 'bg-black/50',
+  
+  // Border opacity pattern replacements
+  'border-primary border-opacity-15': 'border-primary/15',
+  
+  // Hover pattern replacements
+  'hover:bg-primary hover:bg-opacity-10': 'hover:bg-primary/10',
+  'hover:bg-primary hover:text-white': 'hover:bg-primary hover:text-white',
+  'hover:bg-white hover:bg-opacity-20': 'hover:bg-white/20',
 };
 
 // Define directories to search
